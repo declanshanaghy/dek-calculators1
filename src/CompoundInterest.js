@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Panel, ControlLabel, FormControl} from 'react-bootstrap'
+import {Button, Panel, ControlLabel, FormControl} from 'react-bootstrap'
 
 class CompoundInterest extends React.Component {
     constructor(props) {
@@ -47,11 +47,13 @@ class CompoundInterest extends React.Component {
     };
     render() {
         return (
-            <span>
-                {/*<Panel.Heading>*/}
-                    <Panel.Title componentClass="h2">{this.props.label}</Panel.Title>
-                {/*</Panel.Heading>*/}
-                {/*<Panel.Body>*/}
+            <Panel id={"compound-interest-" + this.props.id}>
+                <Panel.Heading>
+                    <Panel.Title componentClass="h2" toggle>
+                        {this.props.label}
+                    </Panel.Title>
+                </Panel.Heading>
+                <Panel.Collapse>
                     <ControlLabel>Initial Investment</ControlLabel>
                     <FormControl type="text" name="initialInvestment"
                                  value={this.state.initialInvestment}
@@ -64,8 +66,8 @@ class CompoundInterest extends React.Component {
                     <FormControl type="text" name="interestRate"
                                  value={this.state.returnRate}
                                  onChange={this.handleInputChange}/>
-                {/*</Panel.Body>*/}
-            </span>
+                </Panel.Collapse>
+            </Panel>
         );
     }
 }

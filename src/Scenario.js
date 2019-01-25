@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ControlLabel, Form, FormControl, Grid, Panel, Row, Table, Col } from 'react-bootstrap';
+import { Button, ControlLabel, Form, FormControl, Grid, Panel, PanelGroup, Row, Col } from 'react-bootstrap';
 
 import CompoundInterest from './CompoundInterest'
 import ScenarioGraph from './ScenarioGraph'
@@ -49,12 +49,12 @@ class Scenario extends React.Component {
 
     render() {
         return (
-            <div>
-                <Form>
-                    <Grid fluid={true}>
-                        <Row className="show-grid">
-                            <Col md={3} lg={3}>
-                                <Panel bsStyle="primary">
+            <Form>
+                <Grid fluid={true}>
+                    <Row className="show-grid">
+                        <Col md={3} lg={3}>
+                            <PanelGroup>
+                                <Panel>
                                     <Panel.Heading>
                                         <Panel.Title>General Settings</Panel.Title>
                                     </Panel.Heading>
@@ -67,25 +67,25 @@ class Scenario extends React.Component {
                                         <FormControl type="text" bsSize="small" placeholder="Extra monthly contribution amount"
                                                      name="extraContribution" value={this.state.extraContribution}
                                                      onChange={this.handleInputChange}/>
-                                        <hr/>
-                                        <CompoundInterest ref={this.compound1} interestRate={10.0}/>
-                                        <hr/>
-                                        <CompoundInterest ref={this.compound2} interestRate={5.0}/>
                                     </Panel.Body>
+                                </Panel>
+                                <CompoundInterest ref={this.compound1} interestRate={10.0} id={2}/>
+                                <CompoundInterest ref={this.compound2} interestRate={5.0} id={3}/>
+                                <Panel>
                                     <Panel.Footer>
                                         <Button bsClass="btn-success" onClick={this.calculatePeriods}>Calculate</Button>
                                     </Panel.Footer>
                                 </Panel>
-                                <div>
-                                </div>
-                            </Col>
-                            <Col md={9} lg={9}>
-                                <ScenarioGraph allSeries={[this.state.series1]}/>
-                            </Col>
-                        </Row>
-                    </Grid>
-                </Form>
-            </div>
+                            </PanelGroup>
+                            <div>
+                            </div>
+                        </Col>
+                        <Col md={9} lg={9}>
+                            <ScenarioGraph allSeries={[this.state.series1]}/>
+                        </Col>
+                    </Row>
+                </Grid>
+            </Form>
         );
     }
 }
