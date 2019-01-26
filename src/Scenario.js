@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, ControlLabel, Form, FormControl, Grid, Panel, PanelGroup, Row, Col } from 'react-bootstrap';
 
-import CompoundInterest from './CompoundInterest'
-import ScenarioGraph from './ScenarioGraph'
 import moment from 'moment'
-import {bsClass} from "react-bootstrap/es/utils/bootstrapUtils";
+
+import {CompoundInvestment} from './FinancialInstruments'
+import ScenarioGraph from './ScenarioGraph'
 
 class Scenario extends React.Component {
     constructor(props) {
@@ -17,7 +17,6 @@ class Scenario extends React.Component {
             extraContribution: 0,
         };
         this.compound1 = React.createRef();
-        this.compound2 = React.createRef();
     }
 
     getTimeHorizonPeriods = () => {return this.state.timeHorizonYrs * 12};
@@ -36,6 +35,8 @@ class Scenario extends React.Component {
 
             m.add(1, 'months');
         }
+        console.log("series1=");
+        console.log(series1);
         this.setState({
             series1: series1,
         });
@@ -53,7 +54,7 @@ class Scenario extends React.Component {
                 <Grid fluid={true}>
                     <Row className="show-grid">
                         <Col md={3} lg={3}>
-                            <PanelGroup>
+                            <PanelGroup id="scenario1">
                                 <Panel>
                                     <Panel.Heading>
                                         <Panel.Title>General Settings</Panel.Title>
@@ -69,8 +70,8 @@ class Scenario extends React.Component {
                                                      onChange={this.handleInputChange}/>
                                     </Panel.Body>
                                 </Panel>
-                                <CompoundInterest ref={this.compound1} interestRate={10.0} id={2}/>
-                                <CompoundInterest ref={this.compound2} interestRate={5.0} id={3}/>
+                                <CompoundInvestment ref={this.compound1} interestRate={10.0} id={2}
+                                                    label="Investment 1"/>
                                 <Panel>
                                     <Panel.Footer>
                                         <Button bsClass="btn-success" onClick={this.calculatePeriods}>Calculate</Button>

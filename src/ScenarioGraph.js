@@ -1,8 +1,7 @@
 import React from 'react'
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack } from 'victory';
-import {Col, PageHeader, Panel} from 'react-bootstrap';
+import {Panel} from 'react-bootstrap';
 import moment from 'moment'
-import CompoundInterest from "./CompoundInterest";
 
 class ScenarioGraph extends React.Component {
     constructor(props) {
